@@ -4,21 +4,24 @@ dotenv.config();
 const { WebSocketServer } = require("ws");
 const http = require("http");
 const { url } = require("inspector");
+const { log } = require("console");
 
 const server = http.createServer();
 const wsServer = new WebSocketServer({ server });
 
 wsServer.on("connection", (ws) => {
   console.log("websocket connection established");
-  ws.send("Welcome! You are connected to the WebSocket server.");
 
   ws.on("message", (message) => {
+    ws.send("Welcome! You are connected   to the WebSocket server.");
     console.log(`Received message: ${message}`);
     ws.send(`You sent: Server message`);
 
     if (message.toString() == "close") {
       ws.close(1000, "Closing connection as requested by client");
     }
+
+    console.log("hello world");
   });
 
   ws.on("close", () => {
