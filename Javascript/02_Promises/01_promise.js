@@ -1,5 +1,6 @@
+// 
+
 let promise = new Promise(function (reoslve, reject) {
-  // alert("Hello")
   reoslve(56);
   reject(-1);
 });
