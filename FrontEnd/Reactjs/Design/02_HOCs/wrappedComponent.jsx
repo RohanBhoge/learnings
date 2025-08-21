@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 
-const wrappedComponent = () => {
-  const [count, setCount] = React.useState(0);
+const WrappedComponent = () => {
+  const [count, setCount] = useState(0);
   return (
     <div>
       <h1>Wrapped Component</h1>
@@ -12,4 +12,4 @@ const wrappedComponent = () => {
   );
 };
 
-export default wrappedComponent;
+export default WrappedComponent;
