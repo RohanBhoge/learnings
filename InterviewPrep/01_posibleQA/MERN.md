@@ -314,3 +314,126 @@ To prevent this, the standard method is using **anti-CSRF tokens**.
 2.  **Add Logging in Express:** I'd add detailed logging at the beginning and end of the controller and any relevant service functions for that endpoint. This helps pinpoint exactly which part of the code is taking the longest.
 3.  **Analyze Database Queries:** The database is often the culprit. I'd check the logs for the specific MongoDB queries being run by that endpoint. I would then run those queries directly in the MongoDB shell with `.explain('executionStats')`. This command is invaluable; it shows if the query is using an **index** properly or if it's doing a slow full-collection scan.
 4.  **Application Performance Monitoring (APM):** In a production environment, I'd use an APM tool like New Relic or Datadog. These tools provide detailed performance traces that automatically highlight slow database queries, external API calls, or inefficient code, making it much faster to find the root cause."
+
+
+Of course. Here are 10 more advanced questions, focusing on architecture, security, and modern development practices for a senior or lead developer role.
+
+### 31. What is React Fiber, and how does it enable features like concurrency?
+
+"React Fiber is a complete, backward-compatible rewrite of React's core reconciliation algorithm—the engine that powers the virtual DOM diffing.
+
+Previously, the reconciliation process was synchronous and recursive. Once it started, it couldn't be interrupted. For complex UIs, this could lead to dropped frames and a sluggish user experience.
+
+Fiber breaks the rendering work down into smaller, prioritized chunks. It can **pause, abort, or resume work** on different components. This ability to schedule and interrupt rendering is what enables modern features like **Concurrency**. It allows React to work on a high-priority update (like user input) immediately, even if it's in the middle of a low-priority rendering task (like rendering a large list of data), which makes the application feel much more responsive."
+
+***
+
+### 32. What is the difference between `process.nextTick()` and `setImmediate()` in the Node.js event loop?
+
+"This is a deep dive into the event loop's phases. Both schedule a callback to run asynchronously, but they do so in different phases.
+
+`process.nextTick()` schedules its callback to run immediately after the current operation completes, but *before* the event loop proceeds to the next phase. The `nextTick` queue is processed completely before moving on. Because of this, you can starve the event loop with too many recursive `nextTick` calls.
+
+`setImmediate()` schedules its callback to run in the **check** phase of the event loop, which happens after the **poll** phase (where I/O events are handled) and before timers in the next loop tick.
+
+So, the key difference is timing: `nextTick()` is for immediate, high-priority actions you need to happen right away, while `setImmediate()` is for actions you want to happen in a separate, well-defined phase of the loop, especially after I/O events."
+
+***
+
+### 33. How would you protect a Node.js server from a Denial-of-Service (DoS) attack?
+
+"Protecting against DoS attacks requires a multi-layered strategy.
+
+1.  **Rate Limiting:** This is the first line of defense at the application level. I'd implement a middleware using a library like `express-rate-limit`. This limits the number of requests a single IP address can make in a given time frame, preventing a single user from overwhelming the server.
+2.  **Payload Size Limiting:** I'd configure my Express server to reject request bodies that are too large (e.g., using `express.json({ limit: '10kb' })`). This prevents attackers from exhausting server memory with huge payloads.
+3.  **Infrastructure Level:** For larger-scale Distributed Denial-of-Service (DDoS) attacks, application-level defenses aren't enough. I would use a cloud provider's services like **AWS Shield** or a service like **Cloudflare**. These services sit in front of my server, absorb, and filter out malicious traffic at the network edge before it ever reaches my application."
+
+***
+
+### 34. What are database transactions, and how are they implemented in MongoDB?
+
+"A **transaction** is a sequence of database operations that are treated as a single, atomic unit of work. Either all operations within the transaction succeed, or none of them do. This is crucial for maintaining data integrity, especially in scenarios like financial transfers or order processing. This is often remembered by the acronym **ACID** (Atomicity, Consistency, Isolation, Durability).
+
+MongoDB has supported multi-document ACID transactions since version 4.0. To implement them, you create a **session** with the database. You then start a transaction on that session, perform your sequence of reads and writes (e.g., debiting one account and crediting another), and finally, you either **commit** the transaction to make the changes permanent or **abort** it to roll everything back if an error occurred."
+
+***
+
+### 35. What is GraphQL, and how does it compare to REST?
+
+"**GraphQL** is a query language for APIs and a runtime for fulfilling those queries with your existing data. It's an alternative to REST.
+
+The main difference is in how data is fetched:
+* In **REST**, you typically have multiple endpoints for different resources (e.g., `/users/:id`, `/users/:id/posts`). To get a user and their posts, you might need to make two separate requests. You also get a fixed data structure for each endpoint, which can lead to **over-fetching** (getting more data than you need) or **under-fetching** (not getting enough data and needing more requests).
+* In **GraphQL**, you have a single endpoint. The client sends a query specifying exactly the data and the relationships it needs, and the server responds with a JSON object that matches the query's shape. 
+
+I'd use GraphQL when the frontend has complex data requirements or when I'm building an API for multiple clients (e.g., web and mobile) that have different data needs."
+
+***
+
+### 36. What is the "eventual consistency" model, and when might you use it?
+
+"**Eventual consistency** is a consistency model used in distributed systems. It guarantees that, if no new updates are made to a given data item, all replicas will eventually converge to have the same value. It's a trade-off, sacrificing immediate consistency for higher availability and performance.
+
+I might use this in a **microservices architecture**. For example, imagine an e-commerce site where an `orders-service` and a `notifications-service` are separate. When an order is placed, the `orders-service` could publish an `OrderCreated` event to a message queue like RabbitMQ or Kafka. The `notifications-service` would subscribe to this event and eventually send an email.
+
+There might be a slight delay (milliseconds to seconds) between the order being confirmed and the email being sent, but the system remains highly available and decoupled. This is perfectly acceptable for non-critical operations."
+
+***
+
+### 37. Describe how you would set up a CI/CD pipeline for a MERN application.
+
+"My goal for a CI/CD pipeline is to automate everything from code commit to deployment. I'd use a tool like **GitHub Actions** or Jenkins.
+
+The pipeline would have these main stages:
+1.  **Commit & Trigger:** A developer pushes code to a feature branch in our Git repository, which automatically triggers the pipeline.
+2.  **Continuous Integration (CI):**
+    * The pipeline spins up a clean environment.
+    * It installs dependencies for both the frontend and backend (`npm install`).
+    * It runs linters and static analysis to check code quality.
+    * It executes all **unit and integration tests** for both the React and Node.js applications. If any test fails, the build fails and the developer is notified.
+3.  **Build:** If tests pass, the pipeline creates production-ready artifacts. For the backend, it might build a **Docker image**. For the frontend, it runs `npm run build` to generate the static files.
+4.  **Continuous Deployment (CD):**
+    * When the branch is merged into `main` or `master`, the deployment stage triggers.
+    * The Docker image for the backend is pushed to a container registry (like Docker Hub or AWS ECR) and deployed to the production environment (e.g., Kubernetes or AWS Elastic Beanstalk).
+    * The static frontend assets are uploaded to a service like Vercel or an S3 bucket."
+
+***
+
+### 38. What is your strategy for state management in a large-scale React application?
+
+"For a large-scale application, a structured approach to state management is crucial. I categorize state into three types:
+
+1.  **Local/Component State:** This is state that is only relevant to a single component or its immediate children (e.g., whether a dropdown is open, the value of a form input). I manage this with the `useState` or `useReducer` hooks.
+2.  **Shared/Global State:** This is data that needs to be accessed by many components across the application (e.g., the logged-in user's profile, theme settings). For this, I would use a centralized state management library like **Redux Toolkit** for its predictability and excellent dev tools, or a simpler library like **Zustand** if the state is less complex.
+3.  **Server Cache/Async State:** This is data that comes from an API. Instead of storing it in a global state store like Redux, I prefer using a dedicated data-fetching and caching library like **React Query (now TanStack Query)** or **SWR**. These libraries expertly handle caching, re-fetching, and invalidation of server state, which simplifies code and improves performance significantly."
+
+***
+
+### 39. What is tree shaking and how does it work?
+
+"**Tree shaking** is a dead-code elimination process used by modern JavaScript bundlers like Webpack or Rollup. Its goal is to reduce the final bundle size by including only the code from your dependencies that you actually use.
+
+It works by leveraging the static structure of **ES6 modules** (`import` and `export`). Since the bundler can statically analyze which functions or variables you are importing from a module, it can determine which `export` statements are *not* being used anywhere in your application. During the bundling process, this "dead" or unused code is excluded from the final output file.
+
+This is critical for performance because it results in smaller JavaScript bundles, which means faster download times and quicker page loads for the user."
+
+***
+
+### 40. You've inherited a legacy MERN application with performance issues and low test coverage. What's your 90-day plan?
+
+"My approach would be methodical and focus on creating stability and a foundation for future improvements.
+
+* **First 30 Days: Assess and Stabilize.**
+    * **Instrumentation:** I'd start by setting up Application Performance Monitoring (APM) like Datadog and frontend error tracking like Sentry. We can't fix what we can't measure.
+    * **Identify Critical Paths:** I'd identify the most critical user flows (e.g., checkout, login).
+    * **Write Characterization Tests:** I'd write a few high-level end-to-end tests for these critical paths using Cypress. This creates a safety net, ensuring we don't break key functionality as we make changes.
+    * **Fix the "Loudest" Bugs:** I'd use the monitoring tools to find and fix the most frequent and critical bugs.
+
+* **Next 30 Days: Target Low-Hanging Fruit.**
+    * **Performance Bottlenecks:** Using the APM data, I'd tackle the biggest performance wins first. This is often slow database queries that need an index, or large un-optimized images on the frontend.
+    * **Increase Unit Test Coverage:** I'd mandate that all *new* code and bug fixes must be accompanied by unit tests. I would then start adding tests to the most important existing business logic. I'd set up a code coverage tool like Codecov to track our progress.
+
+* **Final 30 Days: Refactor and Plan.**
+    * **Strategic Refactoring:** I'd identify one or two areas of the codebase that are causing the most pain and schedule a focused refactoring effort, using the tests we've written to do so safely.
+    * **Establish Best Practices:** I'd document and introduce better coding standards, a component library, and a clear Git workflow to improve the developer experience and prevent future tech debt.
+    * **Create a Technical Roadmap:** I'd present my findings and a longer-term roadmap to leadership for paying down technical debt and modernizing the stack where necessary."
