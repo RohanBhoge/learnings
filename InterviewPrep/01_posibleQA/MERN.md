@@ -198,3 +198,119 @@ In a MERN stack, prevention happens at different levels:
 2.  **Frontend (React):** The React app is just static files after it's built. I'd run `npm run build` to generate the optimized static HTML, CSS, and JavaScript files. Then I would deploy this `build` folder to a static hosting service like Netlify, Vercel, or an AWS S3 bucket with CloudFront as a CDN for fast global delivery.
 
 Finally, I'd configure environment variables on both services to connect them, for instance, setting the `REACT_APP_API_URL` on the frontend to point to my deployed backend."
+
+Of course. Here is a third set of 10 MERN questions, diving into more senior-level topics like architecture, advanced patterns, and system design.
+
+### 21. What are Higher-Order Components (HOCs) and custom hooks in React? When would you use one over the other?
+
+"Both are patterns for reusing component logic, but they work differently.
+
+A **Higher-Order Component (HOC)** is a function that takes a component as an argument and returns a new component, usually wrapping the original with additional props or logic. It's a pattern from the pre-hooks era, for example, Redux's `connect` is an HOC.
+
+A **custom hook** is a JavaScript function whose name starts with 'use' that can call other hooks. It lets you extract component logic into reusable functions.
+
+I almost always prefer **custom hooks** today. They are simpler to write, read, and compose without the 'wrapper hell' that HOCs can create. For example, if I have logic to fetch user data, I'd create a `useUserData` hook. It's much cleaner than wrapping every component that needs that data in a `withUserData` HOC."
+
+***
+
+### 22. In Redux, what is the difference between `Redux Thunk` and `Redux Saga`?
+
+"Both are middleware for Redux used to handle side effects, like asynchronous API calls. Their main difference is in their approach.
+
+**Redux Thunk** is simpler. It allows action creators to return a function instead of a plain action object. This function receives `dispatch` and `getState` as arguments, allowing you to perform async logic and dispatch actions when the async call completes. It's great for straightforward async tasks.
+
+**Redux Saga** is more powerful and complex. It uses ES6 Generators to make async flows easier to manage and test. Sagas run in the background like a separate thread, listening for dispatched actions. When an action it's watching for is dispatched, it can trigger complex async workflows, or 'sagas'. I would choose Saga for applications with very complex, long-running async operations, like managing WebSocket connections or a multi-step checkout process."
+
+***
+
+### 23. How does Node.js handle child processes, and what's the difference between `fork()`, `spawn()`, and `exec()`?
+
+"Node.js is single-threaded, but it can create **child processes** to leverage multi-core systems for CPU-intensive tasks. The `child_process` module provides a few ways to do this:
+
+* **`spawn()`**: This is best for long-running processes that stream a lot of data. It launches a new process and allows you to stream `stdio` (standard input/output) back and forth. It's very efficient with memory.
+* **`exec()`**: This is simpler. It runs a command in a shell, buffers the entire output, and gives it to you in a callback when it's done. It's good for running simple shell commands where you need the final output, but it can be memory-intensive for large outputs.
+* **`fork()`**: This is a special version of `spawn()`. It creates a new Node.js process and allows for two-way communication between the parent and child using a built-in messaging channel. This is the foundation of Node's `cluster` module, which is used to easily create child processes for each CPU core to handle incoming requests."
+
+***
+
+### 24. What are the pros and cons of a microservices architecture compared to a monolith for a Node.js backend?
+
+"This is a key architectural decision.
+
+A **monolith** is the traditional approach where the entire backend application is a single, unified codebase.
+* **Pros:** It's simpler to develop, test, and deploy initially.
+* **Cons:** As the application grows, it becomes complex, hard to scale specific features, and a bug in one part can bring down the entire system.
+
+A **microservices architecture** breaks the application down into a collection of smaller, independent services, each with its own codebase and database.
+* **Pros:** Services can be developed, deployed, and scaled independently. You can use different technologies for different services. It's more resilient; if one service fails, the others can keep running.
+* **Cons:** It introduces significant operational complexity. You have to manage inter-service communication, data consistency, and a more complex deployment pipeline.
+
+For a new project, I would likely start with a monolith and design it in a modular way, so it can be broken into microservices later if the need arises."
+
+***
+
+### 25. What is sharding in MongoDB?
+
+"**Sharding** is MongoDB's method for horizontal scaling. It's the process of distributing data across multiple machines or servers. 
+
+When a dataset becomes too large for a single server, or the number of reads/writes overwhelms a single machine, you can **shard** the collection. MongoDB splits the data into chunks based on a 'shard key' you define, and these chunks are distributed across multiple servers (called shards). When you query the data, a routing process directs your query to the correct shard(s). This allows a MongoDB database to scale almost infinitely to handle massive amounts of data and traffic."
+
+***
+
+### 26. What is a replica set in MongoDB, and why is it important?
+
+"A **replica set** is a group of MongoDB servers that maintain the same dataset. Its purpose is to provide **high availability and redundancy**.
+
+It works through a primary-secondary model. One server acts as the **primary** node, which receives all write operations. The other servers are **secondaries**, which replicate the data from the primary.
+
+This is important for two main reasons:
+1.  **Fault Tolerance**: If the primary server goes down, the replica set holds an election and one of the secondaries is automatically promoted to be the new primary. This ensures the application can continue running with minimal downtime.
+2.  **Read Scaling**: Read operations can be distributed across the secondary nodes, which can help balance the load on the primary."
+
+***
+
+### 27. What is your strategy for testing a MERN stack application?
+
+"My testing strategy follows the testing pyramid model, focusing on three main types of tests:
+
+1.  **Unit Tests (Base of the pyramid):** These are the most numerous. I use **Jest** and **React Testing Library** to test individual React components and utility functions in isolation. On the backend, I use Jest or Mocha/Chai to test individual Express controllers, services, and models.
+2.  **Integration Tests (Middle):** These test how multiple parts of the application work together. For the backend, I'd use **Supertest** to make actual HTTP requests to my Express API endpoints and verify that they interact with a test database correctly. For the frontend, I'd test components that make API calls using mock servers with **Mock Service Worker (MSW)**.
+3.  **End-to-End (E2E) Tests (Top):** These simulate a real user journey through the entire application. I'd use a tool like **Cypress** or **Playwright** to write scripts that open a browser, click on buttons, fill out forms, and assert that the UI behaves as expected from start to finish."
+
+***
+
+### 28. What is a Cross-Site Request Forgery (CSRF) attack, and how do you prevent it?
+
+"A **Cross-Site Request Forgery (CSRF)** attack tricks a logged-in user into unknowingly submitting a malicious request to a web application. For example, an attacker could get you to click a link that makes a request to transfer money from your bank account without your knowledge.
+
+This works if the authentication is based solely on cookies, which are sent automatically with every request to a domain.
+
+To prevent this, the standard method is using **anti-CSRF tokens**.
+1.  When a user logs in, the server generates a unique, secret token and sends it to the client.
+2.  The client stores this token and includes it in a custom request header (like `X-CSRF-Token`) for any subsequent state-changing request (like POST, PUT, DELETE).
+3.  The server middleware then verifies that the token in the header matches the one it has on record for that user. Since an attacker's site cannot access or set this custom header on a cross-origin request, the malicious request fails."
+
+***
+
+### 29. What is Server-Side Rendering (SSR), and how does it compare to Client-Side Rendering (CSR)?
+
+"This is about where the HTML for a page is generated.
+
+**Client-Side Rendering (CSR)** is the default for a standard React app. The browser downloads a minimal HTML file along with a large JavaScript bundle. React then runs in the browser to generate the HTML and render the page.
+* **Pros:** Richer site interactions, faster navigation after the initial load.
+* **Cons:** Slow initial page load (`Time to First Paint`) and can be bad for SEO since search engine crawlers may not see the final content.
+
+**Server-Side Rendering (SSR)**, which you can implement with a framework like **Next.js**, renders the initial React components into HTML on the server. The browser receives a fully-formed HTML page, so the content is visible immediately.
+* **Pros:** Excellent for SEO and a much faster initial page load (`First Contentful Paint`).
+* **Cons:** More complex server setup and can have a slower `Time to Interactive` since the browser still needs to download and execute the JavaScript bundle to make the page interactive."
+
+***
+
+### 30. You're told a specific API endpoint is slow. How would you diagnose the bottleneck?
+
+"I'd approach this systematically, starting from the client request and moving down the stack.
+
+1.  **Check the Network Request:** First, I'd use the browser's Network tab to see the total response time. Is the delay in the connection, waiting for the server (`TTFB - Time to First Byte`), or content download? This tells me if it's a network/server issue or a data size issue.
+2.  **Add Logging in Express:** I'd add detailed logging at the beginning and end of the controller and any relevant service functions for that endpoint. This helps pinpoint exactly which part of the code is taking the longest.
+3.  **Analyze Database Queries:** The database is often the culprit. I'd check the logs for the specific MongoDB queries being run by that endpoint. I would then run those queries directly in the MongoDB shell with `.explain('executionStats')`. This command is invaluable; it shows if the query is using an **index** properly or if it's doing a slow full-collection scan.
+4.  **Application Performance Monitoring (APM):** In a production environment, I'd use an APM tool like New Relic or Datadog. These tools provide detailed performance traces that automatically highlight slow database queries, external API calls, or inefficient code, making it much faster to find the root cause."
