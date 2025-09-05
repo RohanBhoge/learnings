@@ -10,4 +10,21 @@ console.log(promise);
 const f = async () => {
   console.log(await promise);
 };
-f();
+
+setTimeout(() => {
+  console.log('Timeout'); // 4 (Macrotask)
+}, 0);
+
+f().finally(() => {
+  console.log("This is finally.");  
+}
+)
+
+console.log('Start'); // 1
+
+
+Promise.resolve().then(() => {
+  console.log('Promise'); // 3 (Microtask)
+});
+
+console.log('End'); // 2
