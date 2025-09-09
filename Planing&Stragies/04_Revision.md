@@ -20,6 +20,15 @@ Here is the detailed, 100-day study plan you requested, starting from today (Sep
 
 **Phase 1: New Topics & Initial Revisions (Day 1 - Day 38)**
 
+Of course! I've integrated "NLP Intro & Regex" into your schedule.
+
+To fit it in logically, I've scheduled it as a **new topic to learn on Day 6**. This allows its revision cycle to fit neatly into the rest of your plan using the same spaced repetition intervals (1, 3, 7, and 14 days).
+***
+
+### Your Updated 100-Day Spaced Repetition Plan
+
+**Phase 1: New Topics & Initial Revisions (Day 1 - Day 38)**
+
 | Day | Date | New Topic to Study 📚 | Topics to Revise 💡 |
 | :-- | :--- | :--- | :--- |
 | 1 | Sep 4 | **JS: Objects** | — |
@@ -27,21 +36,21 @@ Here is the detailed, 100-day study plan you requested, starting from today (Sep
 | 3 | Sep 6 | **JS: How JS Works** | Promises (R1: 1 day) |
 | 4 | Sep 7 | **JS: 'this' keyword** | How JS Works (R1: 1 day), **Objects (R2: 3 days)** |
 | 5 | Sep 8 | **JS: ES-06 JS** | 'this' keyword (R1: 1 day), Promises (R2: 3 days) |
-| 6 | Sep 9 | **JS: OOPs** | ES-06 JS (R1: 1 day), How JS Works (R2: 3 days) |
-| 7 | Sep 10 | **React: Design (1/2)** | OOPs (R1: 1 day), 'this' keyword (R2: 3 days) |
+| 6 | Sep 9 | **JS: OOPs**, **NLP Intro & Regex** | ES-06 JS (R1: 1 day), How JS Works (R2: 3 days) |
+| 7 | Sep 10 | **React: Design (1/2)** | OOPs (R1: 1 day), **NLP Intro & Regex (R1: 1 day)**, 'this' keyword (R2: 3 days) |
 | 8 | Sep 11 | **React: Design (2/2)** | Design (Day 1) (R1: 1 day), ES-06 JS (R2: 3 days), **Objects (R3: 7 days)** |
-| 9 | Sep 12 | **React: Hooks (1/3)** | Design (Day 2) (R1: 1 day), OOPs (R2: 3 days), Promises (R3: 7 days) |
+| 9 | Sep 12 | **React: Hooks (1/3)** | Design (Day 2) (R1: 1 day), OOPs (R2: 3 days), **NLP Intro & Regex (R2: 3 days)**, Promises (R3: 7 days) |
 | 10 | Sep 13 | **React: Hooks (2/3)** | Hooks (Day 1) (R1: 1 day), How JS Works (R3: 7 days) |
 | 11 | Sep 14 | **React: Hooks (3/3)** | Hooks (Day 2) (R1: 1 day), 'this' keyword (R3: 7 days) |
 | 12 | Sep 15 | **React: Performance** | Hooks (Day 3) (R1: 1 day), Design (Day 1) (R2: 3 days), ES-06 JS (R3: 7 days) |
-| 13 | Sep 16 | **React: State mngmt** | Performance (R1: 1 day), Design (Day 2) (R2: 3 days), OOPs (R3: 7 days) |
+| 13 | Sep 16 | **React: State mngmt** | Performance (R1: 1 day), Design (Day 2) (R2: 3 days), OOPs (R3: 7 days), **NLP Intro & Regex (R3: 7 days)** |
 | 14 | Sep 17 | **Backend: Node JS (1/3)** | State mngmt (R1: 1 day) |
 | 15 | Sep 18 | **Backend: Node JS (2/3)** | Node JS (Day 1) (R1: 1 day), Hooks (Day 1) (R2: 3 days), **Objects (R4: 14 days)** |
 | 16 | Sep 19 | **Backend: Node JS (3/3)** | Node JS (Day 2) (R1: 1 day), Hooks (Day 2) (R2: 3 days), **Promises (R4: 14 days)** |
 | 17 | Sep 20 | **Backend: REST APIs** | Node JS (Day 3) (R1: 1 day), Hooks (Day 3) (R2: 3 days), **How JS Works (R4: 14 days)** |
 | 18 | Sep 21 | **Backend: Security** | REST APIs (R1: 1 day), Performance (R2: 3 days), **'this' keyword (R4: 14 days)** |
 | 19 | Sep 22 | **Backend: Data Model (1/2)** | Security (R1: 1 day), State mngmt (R2: 3 days), **ES-06 JS (R4: 14 days)** |
-| 20 | Sep 23 | **Backend: Data Model (2/2)** | Data Model (Day 1) (R1: 1 day), **OOPs (R4: 14 days)** |
+| 20 | Sep 23 | **Backend: Data Model (2/2)** | Data Model (Day 1) (R1: 1 day), **OOPs (R4: 14 days)**, **NLP Intro & Regex (R4: 14 days)** |
 | 21 | Sep 24 | **Backend: Perf. Scale** | Data Model (Day 2) (R1: 1 day), Node JS (Day 1) (R2: 3 days), Design (Day 1) (R3: 7 days) |
 | 22 | Sep 25 | **Backend: High Avail.** | Perf. Scale (R1: 1 day), Node JS (Day 2) (R2: 3 days), Design (Day 2) (R3: 7 days) |
 | 23 | Sep 26 | *No New Topic* | High Avail. (R1: 1 day), Node JS (Day 3) (R2: 3 days) |
@@ -60,6 +69,8 @@ Here is the detailed, 100-day study plan you requested, starting from today (Sep
 | 36 | Oct 9 | *No New Topic* | Data Model (Day 2) (R3: 7 days), **Hooks (Day 2) (R4: 14 days)** |
 | 37 | Oct 10 | *No New Topic* | Perf. Scale (R3: 7 days), **Hooks (Day 3) (R4: 14 days)** |
 | 38 | Oct 11 | *No New Topic* | High Avail. (R3: 7 days), **Performance (R4: 14 days)** |
+
+***
 
 **Phase 2: Consolidation & Practice (Day 39 - Day 100)**
 
