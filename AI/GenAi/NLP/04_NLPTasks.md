@@ -41,3 +41,5 @@ Of course. Here are short notes explaining each of the NLP tasks shown in your i
 * **Voice Assistants**
     * **Goal:** Advanced systems that understand and respond to human speech to perform tasks. They combine speech recognition with multiple NLP tasks.
     * **Example:** Amazon Alexa, Google Assistant, or Apple's Siri.
+
+![tasks](../assets/NLPTasks.png)
