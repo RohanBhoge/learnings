@@ -18,7 +18,6 @@ const person0 = new Object({
   eyeColor: "blue"
 });
 
-
 const person = {
   firstName: "John",
   lastName: "Doe",
@@ -26,7 +25,6 @@ const person = {
   eyeColor: "blue",
   relatives: () => {
     console.log(this.firstName + " " + this.lastName);
-    
     return "this is function in objects";
   },
 };

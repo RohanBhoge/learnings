@@ -153,7 +153,7 @@ In a FAANG-level interview, proficiency in React is assessed not by the ability 
 A candidate must be able to articulate a clear philosophy on when to use:
 -   **Local Component State (`useState`)**: For state that is not needed by any other component.
 -   **Lifting State Up**: The standard pattern for sharing state between sibling components.
--   **Context API**: Ideal for passing data deep down the component tree without "prop drilling".¹
+-   **Context API**: Ideal for passing data deep down the component tree without "prop drilling".
 -   **External Libraries (Redux, Zustand, etc.)**: Justified for managing complex, global application state. Be prepared to defend this choice by discussing trade-offs (benefits vs. costs like boilerplate and bundle size).¹⁰, ²⁸
 
 ### The Hooks Paradigm In-Depth

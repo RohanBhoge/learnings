@@ -129,5 +129,3 @@ When the state changes, the component re-renders to reflect the new UI.
 
 useRef → Use this for values you want to manage behind the scenes.
 When the ref's .current value changes, the component does not re-render.
-
-
