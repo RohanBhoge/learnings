@@ -54,5 +54,4 @@ Once you are satisfied with the model's performance, you deploy it into a produc
 This diagram shows how the stages flow logically from raw text to a functional, deployed model.
 
 
-
 ![NLPPipline](../assets/NLPPipline.png)

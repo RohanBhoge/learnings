@@ -36,8 +36,6 @@ Using the same vocabulary `["cat", "dog", "mat"]`:
 2.  **Sparsity:** The resulting vectors are almost entirely zeros, which is inefficient to store and process.
 3.  **No Semantic Meaning:** Like Label Encoding, the vectors are independent of each other. The representation for `cat` is no more similar to `dog` than it is to `mat`, so the model cannot learn relationships between words.
 
-
-
 ---
 
 ### ## Why We Don't Use Them in Modern NLP

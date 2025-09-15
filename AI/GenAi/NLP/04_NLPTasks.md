@@ -13,7 +13,7 @@ Of course. Here are short notes explaining each of the NLP tasks shown in your i
 * **Text Similarity**
     * **Goal:** Measuring how semantically similar two pieces of text are.
     * **Example:** Identifying duplicate questions on a forum or finding related news articles.
-
+     
 * **Language Modeling**
     * **Goal:** Predicting the next word in a sequence based on the preceding text. This is a core task that powers many other applications.
     * **Example:** The autocomplete feature on your smartphone keyboard suggesting the next word as you type.
@@ -32,6 +32,7 @@ Of course. Here are short notes explaining each of the NLP tasks shown in your i
 
 * **Topic Modeling**
     * **Goal:** Discovering abstract topics that are present in a collection of documents.
+    
     * **Example:** Analyzing thousands of customer reviews to find recurring themes like "shipping issues," "product quality," and "customer support."
 
 * **Chat Bots**

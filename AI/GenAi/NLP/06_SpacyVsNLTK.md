@@ -34,8 +34,6 @@ Here’s a breakdown of their key differences:
     * Academic research and experimentation with various algorithms.
     * When you need access to a specific, less common algorithm that spaCy doesn't offer.
 
-
-
 ---
 
 ### ## Key Takeaways
