@@ -1,0 +1,1 @@
+- today i was watching marshiyan movie and i realize that if i will do consistant effort to improve my life then i will be succesfull it is just a matter of conssitance effort towards my goal which is get out my family from this setuation. solve roblems conssitantly.
