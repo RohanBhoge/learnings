@@ -1,7 +1,6 @@
 Got it ✅. You want the **entire context you gave me (your notes + my structuring + code snippets)** directly formatted as a **single README.md file**.
 Here’s the **final README.md** (you can just copy-paste it as `README.md`):
-
-````markdown
+ 
 # 📘 React `useEffect` Hook Guide
 
 The `useEffect` hook is your component's trusty sidekick 🦸.  

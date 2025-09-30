@@ -82,7 +82,7 @@ Once the browser finishes its task (the 2-second timer is up, or the `fetch` req
 * Callbacks from `setTimeout`, DOM events, `setInterval`, etc., go into the **Callback Queue**.
 * Callbacks from Promises (`.then`, `.catch`) go into the **Microtask Queue**.
 
-> **Key Difference:** The Microtask Queue has a higher priority than the Callback Queue.
+**Key Difference:** The Microtask Queue has a higher priority than the Callback Queue.
 
 ### ### Step 5: The Event Loop - The Great Orchestrator
 
