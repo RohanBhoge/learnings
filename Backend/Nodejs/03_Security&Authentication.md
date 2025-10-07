@@ -5,11 +5,12 @@ Securing a backend application involves a stateless authentication mechanism lik
 ---
 
 ## 📑 Index
-1. [🎟️ JWT Authentication Flow](#🎟️-jwt-authentication-flow)  
-2. [🛡️ Common Vulnerabilities & Mitigation](#🛡️-common-vulnerabilities-and-mitigation)  
-   - [🌍 CORS](#🌍-cross-origin-resource-sharing-cors)  
-   - [⚔️ XSS](#⚔️-cross-site-scripting-xss)  
-3. [🤫 Environment Variables](#🤫-environment-variables-protect-your-secrets)  
+
+1. [🎟️ JWT Authentication Flow](#🎟️-jwt-authentication-flow)
+2. [🛡️ Common Vulnerabilities & Mitigation](#🛡️-common-vulnerabilities-and-mitigation)
+   - [🌍 CORS](#🌍-cross-origin-resource-sharing-cors)
+   - [⚔️ XSS](#⚔️-cross-site-scripting-xss)
+3. [🤫 Environment Variables](#🤫-environment-variables-protect-your-secrets)
 4. [📌 Summary](#📌-summary-cheat-sheet)
 
 ---
@@ -22,16 +23,17 @@ The entire authentication process is self-contained within the token.
 **Analogy:** Think of a JWT as a secure event wristband. You show your ID once (login), get a wristband (JWT), and for the rest of the event, security (middleware) just has to glance at your wristband.
 
 **Flow:**
-1. **User Login** → Sends credentials to `/api/login`.  
-2. **Server Generates & Signs JWT** → With header, payload, and signature (using secret key).  
-3. **Server Sends JWT to Client** → Usually in JSON response.  
-4. **Client Stores JWT** → e.g., in `localStorage` or an `HttpOnly` cookie.  
-   - Each protected request includes it in the header:  
+
+1. **User Login** → Sends credentials to `/api/login`.
+2. **Server Generates & Signs JWT** → With header, payload, and signature (using secret key).
+3. **Server Sends JWT to Client** → Usually in JSON response.
+4. **Client Stores JWT** → e.g., in `localStorage` or an `HttpOnly` cookie.
+   - Each protected request includes it in the header:
      ```
      Authorization: Bearer <your_jwt_here>
      ```
-5. **Server Verifies JWT** → Middleware checks validity.  
-   - ✅ Valid → Attaches payload to `req.user`.  
+5. **Server Verifies JWT** → Middleware checks validity.
+   - ✅ Valid → Attaches payload to `req.user`.
    - ❌ Invalid/Expired → Responds with `401 Unauthorized`.
 
 ---
@@ -44,12 +46,13 @@ Even with authentication, APIs are exposed to **web-based attacks**. Here’s ho
 
 Browsers restrict requests across different domains by default.
 
-- **Mitigation:** Use `cors` middleware.  
+- **Mitigation:** Use `cors` middleware.
+
   ```js
-  const cors = require('cors');
-  app.use(cors({ origin: 'https://your-frontend-domain.com' }));
-  
+  const cors = require("cors");
+  app.use(cors({ origin: "https://your-frontend-domain.com" }));
   ```
+
 ### ⚔️ Cross-Site Scripting (XSS)
 
 XSS injects malicious scripts into user content.
@@ -59,8 +62,9 @@ XSS injects malicious scripts into user content.
 Sanitize all user inputs.
 
 Use helmet middleware to set security headers.
+
 ```js
-const helmet = require('helmet');
+const helmet = require("helmet");
 app.use(helmet());
 ```
 
@@ -73,6 +77,7 @@ Never hard-code secrets (DB URLs, API keys, JWT secrets).
 Use .env file + dotenv library.
 
 Add .env to .gitignore.
+
 ```js
 # .env
 DATABASE_URL="your_connection_string"
@@ -93,5 +98,3 @@ This keeps secrets out of source code and allows separate configs for dev, stagi
 | **CORS**         | Configure `cors()` to allow trusted origins only |
 | **XSS**          | Sanitize inputs + use `helmet` for CSP headers   |
 | **Secrets Mgmt** | Store in `.env`, never commit sensitive data     |
-
-
