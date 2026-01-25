@@ -1,11 +1,11 @@
 // 1. this in Globle
 
-console.log(this);
+console.log(this); // global object/window object
 
 // 2. this in Function
 function myFunction() {
   //The value depends on strict / non strict mode.
-  console.log(this); // strict == undefined    non-strict == global object/window
+  console.log(this); // strict == undefined    non-strict == global object/window object
 }
 myFunction();
 
@@ -68,10 +68,10 @@ studentNested.printName(); // 'this' refers to the global object, so it will pri
 // 9. 'this' inside DOM element
 
 // it refers to the HTML element.
-const button = document.querySelector("button");
-button.addEventListener("click", function () {
-  console.log(this); // 'this' refers to the button element
-});
+// const button = document.querySelector("button");
+// button.addEventListener("click", function () {
+//   console.log(this); // 'this' refers to(HTML element) the button element
+// });
 
 // 10. 'this' inside class
 class Student {

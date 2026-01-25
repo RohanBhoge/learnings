@@ -1,0 +1,60 @@
+<!-- 
+call() 
+The call() method immediately executes a function, setting the this value and accepting arguments as a comma-separated list. 
+Syntax: function.call(thisArg, arg1, arg2, ...)
+Execution: Immediate
+Arguments: Passed as a comma-separated list. 
+Example:
+javascript
+const person1 = { firstName: "John", lastName: "Doe" };
+const person2 = { firstName: "Jane", lastName: "Doe" };
+
+function fullName(city, country) {
+  return this.firstName + " " + this.lastName + ", " + city + ", " + country;
+}
+
+console.log(fullName.call(person2, "Oslo", "Norway"));
+// Output: Jane Doe, Oslo, Norway
+This method is useful for "function borrowing," allowing an object to use a method from another object. 
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let name = {
+            firstName: "Akshay",
+            lastName: "Saini",
+            printFullName: function (city) {
+                console.log(this.firstName + " " + this.lastName + " from " + city
+                );
+            }
+        }
+
+        let printFullName = function (city) {
+            console.log(this.firstName + " " + this.lastName + " from " + city
+            );
+        }
+
+        let name2 = {
+            firstName: "Rohan",
+            lastName: "Bhoge"
+        }
+
+        // name.printFullName("Dubai") // just calls the normal function which is pressent in the name object
+        // name.printFullName.call(name2, "Pune");  // 'call' method borows the name.function from name object
+
+        // name.printFullName.apply(name2, ["Pune", "Maharashtra"]);  // 'call' method borows the name.function from name object
+        name.printFullName.bind(name2, "Pune", "Maharashtra")();  // 'bind' method borows the name.function from name object
+        printFullName.bind(name2, "Pune", "Maharashtra")();  // 'bind' method borows the name.function from name object
+    </script>
+</body>
+
+</html>
