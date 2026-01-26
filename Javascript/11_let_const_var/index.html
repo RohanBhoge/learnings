@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1. var
+        // - it has a function scoped.
+        {
+            var a = 10
+        }
+        console.log(a)
+
+        // - can be reasigned and redeclared.
+        var b = 5
+        {
+            var b = 30  // reassigned and redeclared.
+            console.log(b)
+        }
+        console.log(b)
+
+
+        // - can be hoisted
+        console.log(c) // o/p: undefined
+        var c = 100
+
+
+
+        // 2. let.
+        // - it has block scope
+        {
+            let l = 10
+            console.log(l)
+        }
+        // console.log(l)  // o/p:ReferenceError:- l is not defined 
+
+        // - can be reassined but not redeclared.
+        // m = 5   // globle variable.
+        {
+            x = 15  // globle variable.
+            let m = 20  // block scop let variable.
+            m = 50  // reassined 'm' variable.
+            console.log(m)
+        }
+        console.log(x)
+        // console.log(m)
+
+        // - can not hoisted.
+        // console.log(n)  // ReferenceError: Cannot access 'n' before initialization
+        let n = 1
+
+
+
+
+        // 3. const
+        // - block scope
+        {
+            const y = 9
+            console.log(y)
+        }
+
+        // - can't reassigned and redeclarable.
+        {
+            const z = 4
+            // z = 3 // TypeError: Assignment to constant variable.
+        }
+
+        // - can not be hoisted.
+        console.log(xz) // ReferenceError: Cannot access 'xz' before initialization
+        const xz = 8
+
+
+
+
+        // ex.,
+        let name0 = "Rohan"
+        {
+            // const surname = "Bhoge"
+            var village = "Kharwandi"
+        }
+        console.log("My name is ", name0, "", " from ", village)
+
+    </script>
+</body>
+
+</html>
