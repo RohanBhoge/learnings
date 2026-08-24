@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        variable = 10;
+        (() => {
+            a = 10;
+            console.log(a);
+            a = 100;
+            var variable = 20;
+            console.log(variable);
+        })()
+        console.log(a);
+        console.log(variable);
+        var variable = 30
+    </script>
+</body>
+
+</html>
