@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1. SyntaxError
+        // These occur when the code violates JavaScript's grammar rules (e.g., missing parentheses, brackets, or incorrect keywords). The JavaScript engine typically catches these before the script even starts running.
+        /*
+        function (a, b) {  // not given function name
+            return a + b;
+        }
+        sum(1, 2)
+        */
+
+        // 2. Runtime Error
+        // Also known as exceptions, these errors occur while the program is executing, even if the syntax is correct.
+
+        `function substraction(a, b) {
+            console.logs(a + b);
+        }
+        substraction(1, 2)`
+
+        // 3. Logical Error
+        // These errors are the most subtle and hardest to find. They occur when the code runs without crashing but doesn't perform the intended function.
+
+        function substraction(a, b) {
+            console.log(a + b);
+        }
+        substraction(1, 2)
+    </script>
+</body>
+
+</html>
