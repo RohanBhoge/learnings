@@ -1,34 +1,4 @@
-/**
- * This is the LeetCode Code which i have solved using brute force approach.
- * At the submission time got 'Time Limit Exceeded'.
- *  - Which means the solution is not optimal and needs to be optimized.
- * @param {number[]} heights
- * @return {number}
- */
-
-// Brute Force Approach
-var largestRectangleArea = function (heights) {
-  let maxArea = 0;
-
-  for (let i = 0; i < heights.length; i++) {
-    let length = 1;
-    let minHeight = heights[i];
-
-    for (let j = i; j >= 0; j--) {
-      minHeight = Math.min(minHeight, heights[j]);
-
-      if (minHeight == 0) break;
-
-      maxArea = Math.max(maxArea, length * minHeight);
-      length += 1;
-    }
-  }
-  
-  console.log(maxArea);
-  return maxArea;
-};
-
-const heights = [
+export const heights = [
   7526, 2268, 7746, 6830, 6480, 3846, 9924, 9681, 2569, 884, 8244, 1815, 9000,
   6580, 3955, 3176, 950, 6427, 8420, 8194, 359, 2097, 3085, 1330, 132, 6469,
   1013, 1004, 1039, 5065, 7692, 2008, 8809, 6377, 3213, 252, 2295, 641, 6470,
@@ -5201,5 +5171,3 @@ const heights = [
   4684, 1808, 1212, 364, 6862, 9825, 8890, 2994, 2461, 847, 5294, 3097, 2233,
   904, 9073, 848, 7890, 5646, 3094, 1385,
 ];
-
-largestRectangleArea(heights);
