@@ -271,4 +271,4 @@ list.print();
 list.reverse();
 console.log("After reverse:");
 list.print();
-console.log("Head node value in the linked list:", head.value);
+// console.log("Head node value in the linked list:", head.value);
