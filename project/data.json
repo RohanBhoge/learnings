@@ -1,0 +1,260 @@
+// get quotations list api response:
+
+{
+  "success": true,
+  "message": "Quotations fetched successfully",
+  "data": {
+    "items": [
+      {
+        "id": "671d0a1b2c3d4e5f6a7b8c02",
+        "quotationNo": "QT-1024",
+        "customerId": "671c9f00a1b2c3d4e5f60002",
+        "customerName": "ABC Steel",
+        "quotationDate": "2026-09-30",
+        "totalAmount": 240000,
+        "salesPerson": { "id": "671b1000a1b2c3d4e5f60024", "name": "Courtney Henry" },
+        "supervisor": { "id": "671b1000a1b2c3d4e5f60022", "name": "Darrell Stewart" },
+        "status": "open",
+        "updatedAt": "2026-09-30T09:12:00.000Z",
+        "isDelete": false 
+      }
+    ],
+      "totalAmount": 149090000,
+      "closedAmount": 149090000,
+      "statusCounts": { "all": 360, "open": 210, "sent": 40, "closed": 60, "cancelled": 20, "draft": 30 } ,
+       "total": 45,
+        "page": 1,
+        "pageSize": 10   
+  }
+}
+
+
+// create quotation api payload:
+
+{
+  "status": "open",-
+  "quotationNumber":3,-
+  "enquiryDate": "671b1000a1b2c3d4e5f60021",-
+  "customerId": "671c9f00a1b2c3d4e5f60001",-
+  "quotationDate": "2026-10-14",-
+  "validityDate": "2026-10-21",-
+  "referenceName": "Adarsh N",-
+  "salesPersonId": "671b1000a1b2c3d4e5f60021",-
+  "billingAddressId": "671c9f00a1b2c3d4e5f60011",-
+  "shippingAddressId": "671c9f00a1b2c3d4e5f60012",-
+  "leadId": "671a9000a1b2c3d4e5f60061",
+  "items": [
+    {
+      "categoryId": "671c9f00a1b2c3d4e5f60011",-
+      "productId": "671a0000a1b2c3d4e5f60031",-
+      "quantity": 20,-
+      "discountValue": 10,-
+      "description": "Create your first invoice with ease using our sample product!",-
+    },
+    {
+      "categoryId": "671c9f00a1b2c3d4e5f60011",-
+      "productId": "671a0000a1b2c3d4e5f60031",-
+      "quantity": 20,-
+      "discountValue": 10,-
+      "description": "Create your first invoice with ease using our sample product!",-
+    }
+  ],
+  "holdStockUpTo": "2026-10-14",-
+  "discountAllItemsPercent": 10,-
+  "additionalCharges": [
+    {
+      "chargeTypeId": "671a2000a1b2c3d4e5f60071",
+      "name": "Packing and Forwarding Charges",
+      "chargeSign": "add",
+      "sacCode": "996764",
+      "taxRate": 0,
+      "percentage": 1,
+      "amountWithoutTax": 108
+    }
+  ],
+  "applyDiscount": 10,-
+  "termsConditions": "Safe",-  
+  "notes": ["Safe Delivery"],-
+  "attachments": [
+    { "fileName": "po-copy.png", "mimeType": "image/png", "base64": "iVBORw0KGgoAAAANSUhEUgAA..." }
+  ],-
+  "signature":  { "fileName": "signature.png", "mimeType": "image/png", "base64": "iVBORw0KGgoAAAANSUhEUgAA..." },-
+  "qrCode": { "fileName": "qr-code.png", "mimeType": "image/png", "base64": "iVBORw0KGgoAAAANSUhEUgAA..." },-
+}
+
+
+// Add Customer api payload:
+
+{
+  "name": "Ratan TATA",-
+  "phoneCountryCode": "+91",-
+  "phone": "9000000001",-
+  "email": "ratan@example.com",-
+  "contactPersons": [
+    { "name": "Aryan J", "designation": "Salesman", "phoneCountryCode": "+91", "phone": "9876500001", "email": "aryan@example.com" }
+  ],-
+  "gstin": "29AABCT1332L000",-
+  "companyName": "NEXTSPEED TECHNOLOGIES PRIVATE LIMITED",-
+  "location": "https://maps.app.goo.gl/r5DhQfBzffAT7zMs9",-
+  "billingAddresses": [
+    {
+      "title": "NEXTSPEED TECHNOLOGIES PRIVATE LIMITED",
+      "addressLine1": "Hadapasar",
+      "addressLine2": "Manjari",
+      "pincode": "411027",
+      "city": "Pune City East",
+      "state": "Maharashtra",
+      "notes": "",
+      "isDefault": true
+    }
+  ],
+  "productsCategory": "Steel",
+  "shopCompanyImg": { "fileName": "shop.png", "mimeType": "image/png", "base64": "iVBORw0KGgoAAAANSUhEUgAA..." },
+  "shippingAddresses": [
+    {
+      "title": "NEXTSPEED TECHNOLOGIES PRIVATE LIMITED",
+      "addressLine1": "Hadapasar",
+      "addressLine2": "Manjari",
+      "pincode": "411027",
+      "city": "Pune City East",
+      "state": "Maharashtra",
+      "notes": "",
+      "isDefault": true
+    }
+  ],
+  "openingBalance":{ "amount": 0, "type": "debit" },
+  "profileImage": { "fileName": "profile.png", "mimeType": "image/png", "base64": "iVBORw0KGgoAAAANSUhEUgAA..." },
+  "panNo": "ABCDE1234F",-
+  "discountPercent": 0,-
+  "creditLimit": 0,-
+  "notes": "",
+  "tags": [],
+  "ccEmails": [],
+}
+
+
+////// get single Quotations. ////////////
+
+{
+  "success": true,
+  "message": "Quotation fetched successfully",
+  "data": {
+    "id": "671d0a1b2c3d4e5f6a7b8c01",
+    "quotationNo": "EST-3",
+    "quotationSeq": 3,
+    "status": "open",
+    "enquiryDate": "2026-04-29",
+    "leadId": "671a9000a1b2c3d4e5f60061",
+    "quotationDate": "2026-10-14",
+    "validityDate": "2026-10-21",
+    "referenceName": "Adarsh N",
+    "customerId": "671c9f00a1b2c3d4e5f60001",
+    "customer": {
+      "id": "671c9f00a1b2c3d4e5f60001", "name": "Rohit C", "companyName": "RCC",
+      "phoneCountryCode": "+91", "phone": "9076348764", "email": "rohit@gmail.com", "gstin": "27AABCR1234F1Z2"
+    },
+    "billingAddress": {
+      "id": "671c9f00a1b2c3d4e5f60011", "type": "billing", "title": "RCC", "addressLine1": "Daund", "addressLine2": "Solapur",
+      "city": "Pune City East", "state": "Maharashtra", "stateCode": "27", "pincode": "412709", "country": "India",
+      "notes": "", "isDefault": true, "formattedAddress": "Daund, Solapur, Pune City East, 27-MAHARASHTRA-412709, India"
+    },
+    "shippingAddress": {
+      "id": "671c9f00a1b2c3d4e5f60012", "type": "shipping", "title": "RCC", "addressLine1": "Daund", "addressLine2": "Solapur",
+      "city": "Pune City East", "state": "Maharashtra", "stateCode": "27", "pincode": "412709", "country": "India",
+      "notes": "", "isDefault": true, "formattedAddress": "Daund, Solapur, Pune City East, 27-MAHARASHTRA-412709, India"
+    },
+    "salesPerson": { "id": "671b1000a1b2c3d4e5f60021", "name": "Ayush V", "email": "ayush@business.in" },
+    "items": [
+      {
+        "id": "671d0a1b2c3d4e5f6a7b8c11",
+         "sortOrder": 1,
+          "productId": "671a0000a1b2c3d4e5f60031",
+           "productName": "GP Sheet (Mtr)",
+        "description": "Create your first invoice with ease using our sample product!",
+         "itemType": "product",
+          "hsnSacCode": "00000000",
+        "unit": "MTR",
+         "availableStock": 250,
+          "quantity": 20,-
+           "unitPrice": 100,
+            "unitPriceWithTax": 100,
+        "discountType": "percent",
+         "discountValue": 10, 
+         "loadingCharge": 90, 
+         "taxRate": 0,
+          "holdStock": true,
+        "discountedUnitPrice": 90,
+         "discountAmount": 200, 
+         "taxableAmount": 1800,
+          "taxAmount": 0, 
+          "lineTotal": 1800
+      },
+      {
+        "id": "671d0a1b2c3d4e5f6a7b8c12", "sortOrder": 2, "productId": "671a0000a1b2c3d4e5f60032", "productName": "Steel Rods 0.5mm",
+        "description": "Create your first invoice with ease using our sample product!", "itemType": "product", "hsnSacCode": "00000000",
+        "unit": "NOS", "availableStock": 1500, "quantity": 100, "unitPrice": 100, "unitPriceWithTax": 100,
+        "discountType": "percent", "discountValue": 10, "loadingCharge": 450, "taxRate": 0, "holdStock": false,
+        "discountedUnitPrice": 90, "discountAmount": 1000, "taxableAmount": 9000, "taxAmount": 0, "lineTotal": 9000
+      }
+    ],
+    "holdStockUntil": "2026-10-14",
+    "discountAllItemsPercent": 10,
+    "additionalCharges": [
+      {
+        "id": "671d0a1b2c3d4e5f6a7b8c21", "chargeTypeId": "671a2000a1b2c3d4e5f60071", "name": "Packing and Forwarding Charges",
+        "chargeSign": "add", "sacCode": "996764", "taxRate": 0, "percentage": 1, "amountWithoutTax": 108, "amountWithTax": 108
+      }
+    ],
+    "extraDiscount": { "type": "amount", "value": 0, "amount": 0 },
+    "roundOffEnabled": true,
+    "totalItems": 2,
+    "totalQuantity": 120,
+    "totalDiscount": 1200,
+    "loadingChargesTotal": 540,
+    "loadingChargesSacCode": "996819",
+    "additionalChargesTotal": 108,
+    "totalTax": 0,
+    "taxableAmount": 11448,
+    "roundOffAmount": 0,
+    "totalAmount": 11448,
+    "notes": "Safe Delivery",
+    "termsAndConditions": "Safe",
+    "attachments": [
+      {
+        "id": "671d0a1b2c3d4e5f6a7b8c31", "fileName": "po-copy.png", "mimeType": "image/png", "fileSize": 48213,
+        "fileUrl": "https://anuj-steels-erp.s3.ap-south-1.amazonaws.com/quotations/EST-3/attachments/po-copy.png",
+        "uploadedAt": "2026-10-14T04:43:00.000Z"
+      }
+    ],
+    "signature": {
+      "id": "671a4000a1b2c3d4e5f60041", "fileName": "signature-rohit.png", "mimeType": "image/png", "fileSize": 8120,
+      "fileUrl": "https://anuj-steels-erp.s3.ap-south-1.amazonaws.com/company/signature-rohit.png",
+      "uploadedAt": "2026-08-01T05:00:00.000Z"
+    },
+    "qrCode": {
+      "id": "671a4000a1b2c3d4e5f60041", "fileName": "qr-code.png", "mimeType": "image/png", "fileSize": 8120,
+      "fileUrl": "https://anuj-steels-erp.s3.ap-south-1.amazonaws.com/company/qr-code.png",
+      "uploadedAt": "2026-08-01T05:00:00.000Z"
+    },
+    "bankAccountId": null,
+    "issuer": {
+      "businessName": "DTS",
+      "logoUrl": "https://anuj-steels-erp.s3.ap-south-1.amazonaws.com/company/logo.png",
+      "address": "Plot 12, MIDC, Pune, Maharashtra 411019",
+      "gstin": "27AABCD1234E1Z5"
+    },
+    "copyLabel": "ORIGINAL FOR RECIPIENT",
+    "sentAt": null,
+    "cancelledAt": null,
+    "cancelReason": null,
+    "convertedOrderSlipId": null,
+    "convertedOrderSlipNo": null,
+    "isDelete": false,
+    "createdAt": "2026-10-14T04:43:00.000Z",
+    "updatedAt": "2026-10-14T05:52:00.000Z",
+    "createdBy": { "id": "671b1000a1b2c3d4e5f60023", "name": "Adarsh N", "email": "adarsh@business.in" },
+    "updatedBy": { "id": "671b1000a1b2c3d4e5f60023", "name": "Adarsh N", "email": "adarsh@business.in" },
+    "deletedAt": null,
+    "deletedBy": null
+  }
+}
